@@ -1,13 +1,23 @@
 import React from 'react';
-import {Redirect} from 'react-router-dom';
+import firebase from '../firebase';
 import './style/logout.css';
 
 
-class Logout extends React.Component{
+class Logout extends React.Component {
 
-    render(){
-        return(
-            <h1>You are logged out...</h1>
+    componentDidMount() {
+        firebase.auth().signOut()
+    }
+
+    render() {
+        return (
+            <>
+            <div className="logout-wrapper">
+                <div>OH NO! You're not logged in!</div>
+            </div>
+
+            </>
+
         )
     }
 }
