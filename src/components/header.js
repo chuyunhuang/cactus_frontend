@@ -28,10 +28,6 @@ const Header = (props) => {
                     </div>
                 </div>
             </nav>
-                {/* <div>
-                    <div className="col-slogan">Where plants meet friends</div>
-                </div> */}
-            
         </>
     )
 
