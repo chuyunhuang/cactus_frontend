@@ -9,7 +9,7 @@
     /* align-items: center; */
     font-size: 18px;
     font-family: Arial, Helvetica, sans-serif;
-    padding:10px;
+    /* padding:10px; */
     background-color: #83BCA9;
 }
 
@@ -23,23 +23,33 @@
     font-size: 48px;
     text-decoration: none;
     color: #efefef;
+    /* border: 1px solid black; */
 }
 
 .brand-name:active{
     color: #efefef;
+    text-decoration: none;
+}
+
+.brand-name:hover{
+    color: #efefef;
+    text-decoration: none;
 }
 
 .brand-slogan{
     font-size: 16px;
     margin-left: 15px;
     color: #efefef;
+    /* border: 1px solid black; */
+    margin-top: -15px;
+
 }
 
 .logo-img{
     width:30px;
     position: absolute;
-    left:195px;
-    top: 18px;
+    left:207px;
+    top: 25px;
 }
 
 .navitem-wrapper{
@@ -55,7 +65,14 @@
     text-decoration: none;
 }
 
+.nav-item:hover{
+    color: #efefef;
+    text-decoration: none;
+}
 
+.nav-item:active{
+    color: #efefef;
+}
 
 /* --SEARCH BAR --*/
 .col-search{

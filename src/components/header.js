@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './style/header.css';
-
+import logo from './image/logo.png';
 
 const Header = (props) => {
     return (
@@ -13,7 +13,7 @@ const Header = (props) => {
                         <div>
                             <div className="brand-slogan">Where plants meet friends</div>
                         </div>
-                        {/* <img className="logo-img" src="cactus_frontend/src/components/image/036.png" alt="logo-img"></img>  */}
+                         <img className="logo-img" src={logo} alt="logo-img"></img>  
                     </div>
                 </div>
                 <div className="navitem-wrapper">
