@@ -4,6 +4,7 @@ import firebase from './firebase';
 
 // ---- pages
 import Header from './components/header';
+import Home from './container/home';
 import Login from './container/login';
 import SignUp from './container/signup';
 import Logout from './container/signout';
@@ -38,6 +39,7 @@ class App extends Component {
         <AuthContext.Provider value={this.state.user}>
           <Route path='/' component={Header} />
           <Switch>
+            <Route path ="/" exact component={Home} />
             <Route path='/login' exact component={Login} />
             <Route path="/signup" exact component={SignUp} />
             <Route path="/logout" exact component={Logout} />

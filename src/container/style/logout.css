@@ -1,0 +1,13 @@
+.logout-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #83BCA9;
+    border-radius: 15px;
+    margin:50px;
+    font-size: 24px;
+    padding: 20px;
+    font-weight: bold;
+    color: #83BCA9;
+}
+

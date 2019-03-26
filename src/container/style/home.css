@@ -1,0 +1,52 @@
+.homepage-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #83BCA9;
+    border-radius: 15px;
+    margin:50px;
+}
+
+.homepage-msg{
+    font-size: 24px;
+    padding: 20px;
+    color: #83BCA9;
+    font-weight: bold;
+}
+
+.user{
+    font-weight: bold;
+}
+
+/* CARDS */
+.card-flex-grid{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    padding: 50px;
+}
+
+.card{
+    width: 30%;
+    padding: 30px;
+    border-radius: 30px;
+   
+}
+
+.icon{
+    width: 40px;
+}
+
+.logout-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #83BCA9;
+    border-radius: 15px;
+    margin:50px;
+    font-size: 24px;
+    padding: 20px;
+    font-weight: bold;
+    color: #83BCA9;
+}
