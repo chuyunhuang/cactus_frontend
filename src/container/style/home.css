@@ -2,42 +2,65 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid #83BCA9;
-    border-radius: 15px;
+    /* border: 1px solid #83BCA9; */
+    border-radius: 15px; 
     margin:50px;
+    padding:20px;
 }
 
 .homepage-msg{
     font-size: 24px;
-    padding: 20px;
     color: #83BCA9;
     font-weight: bold;
 }
 
 .user{
+    font-size: 24px;
+    color: #83BCA9;
     font-weight: bold;
+    padding-left: 5px;
 }
 
-/* CARDS */
-.card-flex-grid{
+.userFunction-wrapper{
     display: flex;
-    justify-content: space-around;
     flex-wrap: wrap;
-    margin-top: 20px;
-    padding: 50px;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+    margin-left:50px;
+    margin-right: 50px;
+    
 }
 
-.card{
+.single{
     width: 30%;
-    padding: 30px;
-    border-radius: 30px;
-   
+    display: flex;
+    flex-direction: column;
+    padding:10px;
 }
 
-.icon{
-    width: 40px;
+.img-logo{
+      width:150px;
+} 
+
+.userFunction{
+    font-size: 20px;
+    font-weight: bold;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background-color:#F49D37;
+    padding-left: 5px; 
+    border-radius: 3px; 
+    
 }
 
+.userFunction:hover{
+    background-color: #E15634;
+    color:white;
+}
+
+/*-- LOGOUT-- */
 .logout-wrapper{
     display: flex;
     align-items: center;

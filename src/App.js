@@ -8,6 +8,7 @@ import Home from './container/home';
 import Login from './container/login';
 import SignUp from './container/signup';
 import Logout from './container/signout';
+import Search from './container/search';
 
 // ----contexts
 import AuthContext from './context/auth';
@@ -43,6 +44,7 @@ class App extends Component {
             <Route path='/login' exact component={Login} />
             <Route path="/signup" exact component={SignUp} />
             <Route path="/logout" exact component={Logout} />
+            <Route path="/search" exact component={Search} />
           </Switch>
         </AuthContext.Provider>
       </HashRouter>
