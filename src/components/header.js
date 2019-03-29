@@ -28,6 +28,9 @@ const Header = (props) => {
                                             <Link className="nav-item" to="/">Home</Link>
                                         </div>
                                         <div className="nav-row">
+                                            <Link className="nav-item" to="/search">Search</Link>
+                                        </div>
+                                        <div className="nav-row">
                                             <Link className="nav-item" to="/logout">Logout</Link>
                                         </div>
                                     </div>
