@@ -1,0 +1,40 @@
+h1{
+    text-align: center;
+    color: #F49D37;
+    padding-top: 20px;
+    font-weight: 600;
+}
+
+.follower-page{
+    min-height: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;    
+}
+
+.card-wrapper{
+    margin-top: 30px;   
+    width: 50%;
+    border-radius: 10px;
+    padding: 20px;
+    border: 1px solid #83BCA9;
+    
+}
+
+.one{
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
+    padding:5px;
+}
+
+.avatar-img{
+    width: 50px;
+    border-radius: 50%;
+}
+
+.follower-username{
+    font-size: 24px;
+    font-weight: bolder;
+}
+

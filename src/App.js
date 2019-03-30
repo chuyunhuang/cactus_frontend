@@ -9,6 +9,12 @@ import Login from './container/login';
 import SignUp from './container/signup';
 import Logout from './container/signout';
 import Search from './container/search';
+import Follower from './components/follower';
+import Following from './components/following';
+import Notification from './components/notification';
+import Newsfeed from './container/newsfeed';
+import UserPage from './container/userpage';
+import EditUser from './container/editUser';
 
 // ----contexts
 import AuthContext from './context/auth';
@@ -40,11 +46,17 @@ class App extends Component {
         <AuthContext.Provider value={this.state.user}>
           <Route path='/' component={Header} />
           <Switch>
-            <Route path ="/" exact component={Home} />
+            <Route path="/" exact component={Home} />
             <Route path='/login' exact component={Login} />
             <Route path="/signup" exact component={SignUp} />
             <Route path="/logout" exact component={Logout} />
             <Route path="/search" exact component={Search} />
+            <Route path="/follower" exact component={Follower} />
+            <Route path="/following" exact component={Following} />
+            <Route path="/notification" exact component={Notification} />
+            <Route path="/newsfeed" exact component={Newsfeed} />
+            <Route path="/mypage" exact component={UserPage} />
+            <Route path="/profile" exact component={EditUser} />
           </Switch>
         </AuthContext.Provider>
       </HashRouter>

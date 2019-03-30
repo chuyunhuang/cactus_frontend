@@ -51,7 +51,7 @@ class Login extends React.Component {
                         } else {
                             return (
                                 <>
-                                    {displayError}
+                                {displayError}
                                     <div style={{ height: '95vh' }}>
                                         <div style={bgStyle}>
                                             <div className="login-page">

@@ -2,8 +2,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    /* border: 1px solid #83BCA9; */
-    border-radius: 15px; 
     margin:50px;
     padding:20px;
 }
@@ -21,12 +19,14 @@
     padding-left: 5px;
 }
 
+/*--USER FUNCTION-- */
 .userFunction-wrapper{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
-    padding: 20px;
+    text-align: center;
+    padding: 15px;
     margin-left:50px;
     margin-right: 50px;
     
@@ -40,7 +40,8 @@
 }
 
 .img-logo{
-      width:150px;
+      width:100px;
+      padding:10px;
 } 
 
 .userFunction{
@@ -51,7 +52,7 @@
     color: white;
     background-color:#F49D37;
     padding-left: 5px; 
-    border-radius: 3px; 
+    border-radius: 10px; 
     
 }
 

@@ -30,6 +30,8 @@ class SignUp extends React.Component {
         firebase.auth().createUserWithEmailAndPassword(email, password)
             .then(response=>{
                 console.log('Return:', response)
+                //promise function to upload file, return the url
+                //.then((url)=> do axois request to your server)
             })
             .catch(err =>{
                 const {message} = err

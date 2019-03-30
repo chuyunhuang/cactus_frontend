@@ -1,0 +1,59 @@
+.profile-form-wrapper{ 
+    width: 60%;
+    box-shadow: 3px 3px 5px 6px #ccc;
+    border-radius: 10px;
+    padding: 15px;
+    background-color: #EC9A29;
+    color:white;
+    margin: 50px;
+
+}
+
+.profile-centered-form{
+    display: flex;
+    justify-content: center;
+    align-self: center;
+}
+
+.form-header{ 
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 10px;
+    padding: 0 5px;
+}
+
+
+.btn-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding:5px;
+}
+
+.btn-row{
+    align-items: baseline;
+    padding-top:5px;
+}
+
+.btn{
+    padding-top:13px;
+    text-decoration: none;
+}
+
+.border{
+    border: 1px solid white;
+}
+
+h6{
+    padding-top:10px;
+}
+
+
+.btn:hover{
+    background-color: #E15634;
+    color:white;
+  
+}
+

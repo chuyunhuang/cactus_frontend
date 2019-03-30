@@ -3,8 +3,13 @@ import AuthContext from '../context/auth';
 import {Link} from 'react-router-dom';
 
 import './style/home.css';
-import exploreImg from './image/edit.png';
 
+import ExploreIcon from './image/explore.png';
+import NotificationIcon from './image/notification.png';
+import MypageIcon from './image/mypage.png';
+import EditIcon from './image/edit.png';
+import FollowerIcon from './image/follower.png';
+import FollowingIcon from './image/following.png';
 
 class Home extends React.Component {
 
@@ -32,30 +37,38 @@ class Home extends React.Component {
 
                                 <div className="userFunction-wrapper">
                                     <div className="single">
-                                      <div className="single-img"><img src={exploreImg} className="img-logo" /></div>
-                                      <Link style={{ textDecoration: 'none' }} className="userFunction" to="/newsfeed">Explore Newsfeed</Link>
+                                      <Link style={{ textDecoration: 'none' }} className="userFunction" to="/newsfeed">Explore Newsfeed
+                                        <div className="single-img"><img src={ExploreIcon} className="img-logo" /></div>
+                                      </Link>
                                     </div>
 
                                     <div className="single">
-                                        <div className="single-img"><img src={exploreImg} className="img-logo" /></div>
-                                        <Link style={{ textDecoration: 'none' }} className="userFunction" to="/notification">Notifications</Link>
+                                       <Link style={{ textDecoration: 'none' }} className="userFunction" to="/mypage">View My Page
+                                            <div className="single-img"><img src={MypageIcon} className="img-logo" /></div>
+                                        </Link>
                                     </div>
+
                                   
-                                    <div className="single">
-                                        <div className="single-img"><img src={exploreImg} className="img-logo" /></div>
-                                        <Link style={{ textDecoration: 'none' }} className="userFunction" to="/mypage">View My Page</Link>
-                                    </div>
                                     <div className="single">    
-                                        <div className="single-img"><img src={exploreImg} className="img-logo" /> </div>
-                                        <Link style={{ textDecoration: 'none' }} className="userFunction" to="/profile">Edit My Profile</Link>
+                                        <Link style={{ textDecoration: 'none' }} className="userFunction" to="/profile">Edit My Profile
+                                            <div className="single-img"><img src={EditIcon} className="img-logo" /> </div>
+                                        </Link>
                                     </div> 
+
                                     <div className="single">
-                                        <div className="single-img"><img src={exploreImg} className="img-logo" /> </div>
-                                        <Link style={{ textDecoration: 'none' }} className="userFunction" to="/follower">My Followers</Link>
+                                        <Link style={{ textDecoration: 'none' }} className="userFunction" to="/notification">Notifications
+                                            <div className="single-img"><img src={NotificationIcon} className="img-logo" /></div>
+                                       </Link>
+                                    </div>
+                                    <div className="single">
+                                        <Link style={{ textDecoration: 'none' }} className="userFunction" to="/follower">My Followers
+                                            <div className="single-img"><img src={FollowerIcon} className="img-logo" /> </div>
+                                        </Link>
                                     </div>
                                     <div className="single">    
-                                        <div className="single-img"><img src={exploreImg} className="img-logo" /> </div>
-                                        <Link style={{ textDecoration: 'none' }} className="userFunction" to="/following">Followings</Link>
+                                        <Link style={{ textDecoration: 'none' }} className="userFunction" to="/following"> My Followings
+                                            <div className="single-img"><img src={FollowingIcon} className="img-logo" /> </div>
+                                        </Link>
                                     </div>     
                                 </div>
                                 </>
