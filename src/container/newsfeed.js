@@ -1,71 +1,80 @@
 import React from 'react';
 import './style/newsfeed.css';
+import axios from 'axios';
 
-import exampleImg from './image/005.png';
-import userImg from './image/userImg.jpg';
-import fakeUserImg from './image/user.jpg';
+import Avatar from '../container/avatar';
+import SingleView from '../container/image_single';
+import Comment from '../container/comment';
+import CommentInput from '../container/commentInput';
+import LikeBtn from '../container/likebtn';
 
-class Newsfeed extends React.Component{
 
-    //make API call to get posts, comments, user info and do e.map to show on page
+class Newsfeed extends React.Component {
+  constructor(props) {
+    super(props)
 
-    render(){
-        return(<>   
-    <h1>Here are the latest feeds...</h1>
-    <div className="entire-view">
-        <div className="single-card-view">
-            <div>
-                <div className="header-row">
-                    <img className="profile-avatar" src={fakeUserImg} alt="avatar" /> 
-                    <div className="username">Example User</div>
-                </div>
-                    <img className="single-img"src={userImg}alt="example" />    
-                </div>
-
-            <div className="single-card-content">
-
-                <div className="content-row">
-                    <div className="btn-row">
-                        <div className="follow-btn">Like Post </div>
-                        <div className="follow-btn">Follow</div>
-                    </div>
-
-                    <div className="content-content"></div>
-                        <div className="body-text content-row">This can be one sentence or two sentence...</div>
-                </div>
-
-                <div className="comment-wrapper">
-                    <div className="wrapper">
-                        <img className="profile-img" src={exampleImg} alt="avatar" />
-                    </div>
-                    <div className="wrapper-2">
-                        <div className="commenter">Username</div>
-                        <div className="comment-text">Comment go here</div>
-                    </div>
-                </div>
-                {/* <div className="comment-wrapper">
-
-                        <div className="wrapper">
-                            <img className="profile-img" src={exampleImg} alt="avatar" />
-                        </div>
-                        <div className="wrapper-2">
-                            <div className="commenter">Username2</div>
-                            <div className="comment-text">Comment go here</div>
-                        </div>
-                    </div> */}
-
- {/* Need some handle submit here!! */}
-                <div className="content-row comment-input-wrapper">
-                    <div className="comment-header">Comment:</div>
-                    <div><textarea className="comment-input-field" type="text" placeholder=" Typing....."></textarea></div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-        </>
-        )
+    this.state = [
+        {
+          username: '',
+          user_avater: '',
+        }
+      ]
     }
+  
+
+  componentDidMount() {
+      axios.get('http://localhost:3100/user')
+      .then((data) => {
+    
+        this.setState({
+          'username':data.data.data[0].username,
+          'user_avatar': data.data.data[0].avatar,
+        })
+      })
+      .catch(err=>{
+        console.log('err', err)
+      })
+  }
+
+  render() {
+    return (<>
+      <h1>Here are the latest feeds...</h1>
+      <div className="entire-view">
+        <div className="single-card-view">
+          <div>
+            <div className="header-row">
+              <Avatar />
+              <div className="username">{this.state.username}</div>
+            </div>
+            <SingleView />
+          </div>
+
+          <div className="single-card-content">
+
+            <div className="content-row">
+              <div className="btn-row">
+                <LikeBtn />
+              </div>
+            </div>
+
+            <div className="comment-wrapper">
+              <div className="wrapper">
+                <Avatar />
+              </div>
+              <div className="wrapper-2">
+                <Comment />
+              </div>
+            </div>
+            <div className="content-row comment-input-wrapper">
+              <CommentInput />
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </>
+    )
+  }
 }
 
 export default Newsfeed;

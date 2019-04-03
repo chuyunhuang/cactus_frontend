@@ -6,11 +6,24 @@ import userImg from './image/sunicon.png'
 class Search extends React.Component {
 
     state={
-        avatar: '',
-        username: 'Yun_n1992',
-        post_count: 1,
-        follower: 200,
-        following: 10
+        query :"user",
+        username:'',
+        post_count: '',
+        followers: '',
+        following: '',
+        error : '' 
+    }
+
+    handleInputChange = (e) =>{
+        console.log('here', e.target.value)
+        this.setState({
+            query: e.target.value
+        })
+       
+    }
+
+    handleClick = (e)=>{
+    
     }
 
     //ComponentDidMounth() make the API call
@@ -19,11 +32,11 @@ class Search extends React.Component {
         return (
             <>
             <div className="search-bar">
-                    <input className="search-iput" type="text" placeholder="search for a user..."></input>
-                    <div className="search-btn">Search</div>
+                    <input className="search-iput" type="text" placeholder="search for a user..." onChange={this.handleInputChange}></input>
+                    <div className="search-btn" onClick={this.handleClick}>Search</div>
             </div>
                 <div className='user-wrapper'>
-                    <div className="search-header">Search Results..</div>
+                    <div className="search-header">Search Results for {this.query}</div>
                     <div className="info-section">
                         <div className="user-info">
                             <div className='user-img'>

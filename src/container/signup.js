@@ -24,7 +24,7 @@ class SignUp extends React.Component {
     }
 
     handleSubmit = (e) =>{
-        e.preventDefault(); 
+       e.preventDefault(); 
 
         const {email, password} = this.state
         firebase.auth().createUserWithEmailAndPassword(email, password)

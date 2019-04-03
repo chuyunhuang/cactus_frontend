@@ -15,6 +15,7 @@ import Notification from './components/notification';
 import Newsfeed from './container/newsfeed';
 import UserPage from './container/userpage';
 import EditUser from './container/editUser';
+import CreatePost from './container/createPost';
 
 // ----contexts
 import AuthContext from './context/auth';
@@ -57,6 +58,7 @@ class App extends Component {
             <Route path="/newsfeed" exact component={Newsfeed} />
             <Route path="/mypage" exact component={UserPage} />
             <Route path="/profile" exact component={EditUser} />
+            <Route path="/createpost" exact component={CreatePost} />
           </Switch>
         </AuthContext.Provider>
       </HashRouter>

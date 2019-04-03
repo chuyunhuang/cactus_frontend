@@ -51,17 +51,14 @@ const Header = (props) => {
                                         </div>
                                     </div>
                                     <div className="navitem-wrapper">
-                                        <div className="nav-row">
+                                         <div className="nav-row">
                                             <Link className="nav-item" to="/">Home</Link>
-                                        </div>
+                                        </div> 
                                         <div className="nav-row">
                                             <Link className="nav-item" to="/login">Login</Link>
                                         </div>
                                         <div className="nav-row">
                                             <Link className="nav-item" to="/signup">Sign Up</Link>
-                                        </div>
-                                        <div className="nav-row">
-                                            <Link className="nav-item" to="/logout">Logout</Link>
                                         </div>
                                     </div>
                                 </nav>
