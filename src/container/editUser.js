@@ -4,6 +4,7 @@ import './style/editUser.css';
 import * as firebase from 'firebase';
 
 import ImageService from '../service/image';
+import axios from 'axios';
 
 class EditUser extends React.Component {
     constructor(props) {
@@ -11,10 +12,9 @@ class EditUser extends React.Component {
 
         this.state = {
             username: '',
-            image: '', //this requires uploading img to firebase
+            image: '',
             email: '',
             password: '',
-
         }
 
     }
@@ -22,7 +22,6 @@ class EditUser extends React.Component {
     
     saveImage = (url) => {
         const date = Date()
-
         ImageService.saveImage(url, date)
     }
 
@@ -37,27 +36,41 @@ class EditUser extends React.Component {
             })
             .then((url) => {
                 this.saveImage(url)
+                this.setState({
+                    image:url
+                })
+                console.log('here', this.state.image)
+            })
+            .catch((err)=>{
+                console.log(err)
             })
     }
 
     
-    // handleInputChange = (e) => {
-    //     const target = e.target
-    //     const value = target.value
-    //     const name = target.name
-
-        // this.setState({
-        //     [name]: value
-        // })
-
-    // }
+    handleChange = (e) => {
+        this.setState({
+            [e.target.name]: e.target.value
+        })
+    }
 
     handleSubmit = (e) => {
-        alert('Your profile is updated!')
         e.preventDefault();
+        axios.put('http://localhost:3100/user/', {
+            'id': 1,
+            'username': this.state.username,
+            'email': this.state.email,
+            'password': this.state.password
+        })
+        .then(res=>{
+            console.log(res)
+        })
+        .catch(err =>{
+            console.log(err)
+        })
+    }
 
         //API call to BE to update/PUT user data
-    }
+    
 
 
     render() {
@@ -71,42 +84,37 @@ class EditUser extends React.Component {
                             <div className="form-header">Edit My Profile</div>
                         </div>
 
-                        <form onSubmit={this.handleSubmit}>
+                        <form>
                             <div className="input-group mb-3">
                                 <div className="custom-file">
-                                    <input type="file" className="custom-file-input" id="inputGroupFile01"
+                                    <input type="file" className="custom-file-input" 
                                         aria-describedby="inputGroupFileAddon01" onChange={this.handleFileInput} />
                                     <label className="custom-file-label">Choose file</label>
                                     <div className="input-group-prepend">
-                                        <span className="input-group-text" id="inputGroupFileAddon01" onClick={this.displayUpload} >Change Profile Image</span>
+                                        <span className="input-group-text" >Change Profile Image</span>
                                     </div>
                                 </div>
                             </div>
                             <div className="form-group">
                                 <label>Username</label>
-                                <input type="text" className="form-control" id="exampleInputPassword1" name="username" />
+                                <input type="text" className="form-control" name="username" onChange={this.handleChange} />
                             </div>
 
-                            <div className="form-group">
+                            {/* <div className="form-group">
                                 <label>Email address</label>
-                                <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" />
-                            </div>
-                            <div className="form-group">
+                                <input type="email" className="form-control" aria-describedby="emailHelp" name="email" onChange={this.handleChange} />
+                            </div> */}
+                            {/* <div className="form-group">
                                 <label >Password</label>
-                                <input type="password" className="form-control" id="exampleInputPassword1" name="password" />
-                            </div>
+                                <input type="password" className="form-control"name="password" onChange={this.handleChange}/>
+                            </div> */}
                         </form>
                         <div className="btn-wrapper">
                             <div className="btn-row">
-                                <button type="submit" className="btn border" value="submit">
+                                <button type="submit" className="btn border" value="submit" onClick={this.handleSubmit}>
                                     <h6>Save Changes</h6>
                                 </button>
                             </div>
-                            {/* <div className="btn-row">
-                         <button type="submit" className="btn border">
-                            <h6>Delete My Account</h6>
-                        </button>
-                    </div> */}
                         </div>
                     </div>
                 </div>
