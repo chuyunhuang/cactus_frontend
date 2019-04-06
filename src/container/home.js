@@ -1,7 +1,6 @@
 import React from 'react';
 import AuthContext from '../context/auth';
-import {Link} from 'react-router-dom';
-import firebase from '../firebase';
+import { Link } from 'react-router-dom';
 
 import './style/home.css';
 
@@ -11,100 +10,77 @@ import MypageIcon from './image/mypage.png';
 import EditIcon from './image/edit.png';
 import FollowerIcon from './image/follower.png';
 import FollowingIcon from './image/following.png';
-import axios from 'axios';
+
 
 class Home extends React.Component {
 
-    state={
-        userToken: ''
-    }
+  render() {
+    return (
+      <AuthContext.Consumer>
+        {
+          (user) => {
+            if (user) {
+              return (
+                <>
+                  <div className="homepage-wrapper">
+                    <div className="homepage-msg">Welcome Back!</div>
+                    <div className="user">{user.email}</div>
+                  </div>
 
-        getFirebaseIdToken = () =>{
-        firebase.auth().currentUser.getIdToken(false).then((userToken) =>{
-            this.setState({userToken})
-        })
-        .catch((err) =>{
-            
-        })
-    }
-
-    handleFirebaseToken = (e) =>{
-        axios.post('http://localhost:3100/test/', {Token: this.state.userToken})
-        .then((response)=>{ 
-            console.log(response.data)
-        })
-        .then((data)=>{
-            console.log(data)
-        })
-    }  
-
-    render() {
-        return (
-           <AuthContext.Consumer>
-                {
-                    (user)=>{
-                        if(user){
-                            return(
-                                <>
-                                <div className="homepage-wrapper">
-                                    <div className="homepage-msg">Welcome Back!</div>
-                                    <div className="user">{user.email}</div>
-                                </div>
-
-                                <div className="userFunction-wrapper">
-                                    <div className="single">
-                                      <Link style={{ textDecoration: 'none' }} className="userFunction" to="/newsfeed">Explore Newsfeed
+                  <div className="userFunction-wrapper">
+                    <div className="single">
+                      <Link style={{ textDecoration: 'none' }} className="userFunction" to="/newsfeed">Explore Newsfeed
                                         <div className="single-img"><img src={ExploreIcon} alt="icon" className="img-logo" /></div>
-                                      </Link>
-                                    </div>
+                      </Link>
+                    </div>
 
-                                    <div className="single">
-                                       <Link style={{ textDecoration: 'none' }} className="userFunction" to="/mypage">View My Page
+                    <div className="single">
+                      <Link style={{ textDecoration: 'none' }} className="userFunction" to="/mypage">View My Page
                                             <div className="single-img"><img src={MypageIcon} alt="icon" className="img-logo" /></div>
-                                        </Link>
-                                    </div>
+                      </Link>
+                    </div>
 
-                                  
-                                    <div className="single">    
-                                        <Link style={{ textDecoration: 'none' }} className="userFunction" to="/profile">Edit My Profile
+
+                    <div className="single">
+                      <Link style={{ textDecoration: 'none' }} className="userFunction" to="/profile">Edit My Profile
                                             <div className="single-img"><img src={EditIcon} alt="icon" className="img-logo" /> </div>
-                                        </Link>
-                                    </div> 
+                      </Link>
+                    </div>
 
-                                    <div className="single">
-                                        <Link style={{ textDecoration: 'none' }} className="userFunction" to="/notification">Notifications
+                    <div className="single">
+                      <Link style={{ textDecoration: 'none' }} className="userFunction" to="/notification">Notifications
                                             <div className="single-img"><img src={NotificationIcon} alt="icon" className="img-logo" /></div>
-                                       </Link>
-                                    </div>
-                                    <div className="single">
-                                        <Link style={{ textDecoration: 'none' }} className="userFunction" to="/follower">My Followers
+                      </Link>
+                    </div>
+                    <div className="single">
+                      <Link style={{ textDecoration: 'none' }} className="userFunction" to="/follower">My Followers
                                             <div className="single-img"><img src={FollowerIcon} alt="icon" className="img-logo" /> </div>
-                                        </Link>
-                                    </div>
-                                    <div className="single">    
-                                        <Link style={{ textDecoration: 'none' }} className="userFunction" to="/following"> My Followings
+                      </Link>
+                    </div>
+                    <div className="single">
+                      <Link style={{ textDecoration: 'none' }} className="userFunction" to="/following"> My Followings
                                             <div className="single-img"><img src={FollowingIcon} alt="icon" className="img-logo" /> </div>
-                                        </Link>
-                                    </div>     
-                                </div>
-                                <button onClick={this.handleFirebaseToken}><h1>Testing Firebase Token</h1></button>
-           
-                                </>
-                            )
-                        } else{
-                            return(
-                                <>
-                                <div className="logout-wrapper">
-                                    <div>OH NO! You're not logged in!</div>
-                                </div>
-                                </>
-                            )
-                        }
-                    }
-                }
-            </AuthContext.Consumer>
-        )
-    }
+                      </Link>
+                    </div>
+                  </div>
+                  <button onClick={this.handleFirebaseToken}><h1>Testing Firebase Token</h1></button>
+
+                </>
+              )
+            } else {
+              return (
+                <>
+                  <div className="logout-wrapper">
+                    <div>OH NO! You're not logged in!</div>
+                  </div>
+                </>
+              )
+            }
+          }
+        }
+      </AuthContext.Consumer>
+    )
+  }
 }
 
 export default Home;

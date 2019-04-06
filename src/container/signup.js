@@ -72,9 +72,6 @@ class SignUp extends React.Component {
           'avatar': this.state.avatar,
           'useruid': this.state.userId})
       })
-      .then((res)=>{
-        console.log(res)
-      })
       .catch(err => {
         const { message } = err
         this.setState({ error: message })

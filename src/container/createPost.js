@@ -1,6 +1,5 @@
 import React from 'react';
 import * as firebase from 'firebase';
-
 import ImageService from '../service/image';
 import axios from 'axios';
 
@@ -10,7 +9,7 @@ class CreatePost extends React.Component {
     super(props);
 
     this.state = {
-      user_id: '',
+      useruid: props.useruid,
       image: '',
       post_caption: '',
     }
@@ -52,7 +51,7 @@ class CreatePost extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
     axios.post('http://localhost:3100/post/', {
-      'author_id': 1,
+      'author_id': this.state.useruid,
       'image_url': this.state.image,
       'caption': this.state.post_caption
     })
