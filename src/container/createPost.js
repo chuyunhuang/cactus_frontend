@@ -67,6 +67,7 @@ class CreatePost extends React.Component {
   }
 
   render() {
+    console.log(this.context.uid)
     return (<>
   
       <div className="profile-centered-form">

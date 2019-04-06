@@ -26,7 +26,6 @@ class App extends Component {
     user: null, 
     userId: null, 
   }
-
   
   componentDidMount(){
     this.unsubscribe = firebase.auth().onAuthStateChanged((user=>{
@@ -45,7 +44,8 @@ class App extends Component {
 
 
   render() {
-    return (
+    
+    return ( this.state.user ?
       <HashRouter>
         <AuthContext.Provider value={this.state.user}>
           <Route path='/' component={Header} />
@@ -59,12 +59,13 @@ class App extends Component {
             <Route path="/following" exact component={Following} />
             <Route path="/notification" exact component={Notification} />
             <Route path="/newsfeed" exact component={Newsfeed} />
-            <Route path="/mypage" exact component={UserPage} />
+            <Route path="/mypage" render={(props) => <UserPage {...props} user={this.state.user} />} />
+            {/* <Route path="/mypage" exact component={UserPage} /> */}
             <Route path="/profile" exact component={EditUser} />
             <Route path="/createpost" exact component={CreatePost}/>
           </Switch>
         </AuthContext.Provider>
-      </HashRouter>
+      </HashRouter> : <>Loading...</>
 
     )
   }
