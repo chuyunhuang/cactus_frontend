@@ -1,6 +1,7 @@
 import React from 'react';
 import AuthContext from '../context/auth';
 import {Link} from 'react-router-dom';
+import firebase from '../firebase';
 
 import './style/home.css';
 
@@ -10,12 +11,36 @@ import MypageIcon from './image/mypage.png';
 import EditIcon from './image/edit.png';
 import FollowerIcon from './image/follower.png';
 import FollowingIcon from './image/following.png';
+import axios from 'axios';
 
 class Home extends React.Component {
 
+    state={
+        userToken: ''
+    }
+
+        getFirebaseIdToken = () =>{
+        firebase.auth().currentUser.getIdToken(false).then((userToken) =>{
+            this.setState({userToken})
+        })
+        .catch((err) =>{
+            
+        })
+    }
+
+    handleFirebaseToken = (e) =>{
+        axios.post('http://localhost:3100/test/', {Token: this.state.userToken})
+        .then((response)=>{ 
+            console.log(response.data)
+        })
+        .then((data)=>{
+            console.log(data)
+        })
+    }  
+
     render() {
         return (
-            <AuthContext.Consumer>
+           <AuthContext.Consumer>
                 {
                     (user)=>{
                         if(user){
@@ -62,6 +87,8 @@ class Home extends React.Component {
                                         </Link>
                                     </div>     
                                 </div>
+                                <button onClick={this.handleFirebaseToken}><h1>Testing Firebase Token</h1></button>
+           
                                 </>
                             )
                         } else{

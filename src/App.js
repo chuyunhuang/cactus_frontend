@@ -23,7 +23,9 @@ import AuthContext from './context/auth';
 class App extends Component {
 
   state={
-    user: null
+    user: null, 
+    userId: null, 
+    userData: null
   }
 
   componentDidMount(){

@@ -3,84 +3,133 @@ import firebase from '../firebase';
 import AuthContext from "../context/auth";
 import { Redirect } from 'react-router-dom';
 
+import ImageService from '../service/image';
+import axios from 'axios';
+
 import './style/signup.css';
 import Background from './image/bluebg2.png';
 
 const bgStyle = {
-    height: "100%",
-    backgroundImage: `url(${Background})`
+  height: "100%",
+  backgroundImage: `url(${Background})`
 };
 
 class SignUp extends React.Component {
 
-    state = {
-        email: '',
-        password: '',
-        error: ''
-    }
+  state = {
+    user: '',
+    email: '',
+    password: '',
+    avatar: '',
+    userId: '',
+    error: ''
+  }
 
-    handleChange =(e)=>{
-        this.setState({[e.target.name]: e.target.value})
-    }
+  //for username, email, password
+  handleChange = (e) => {
+    this.setState({ [e.target.name]: e.target.value })
+  }
+  //for profile image upload
 
-    handleSubmit = (e) =>{
-       e.preventDefault(); 
+  saveImage = (url) =>{
+    const date = Date()
+    ImageService.saveImage(url, date)
+  }
 
-        const {email, password} = this.state
-        firebase.auth().createUserWithEmailAndPassword(email, password)
-            .then(response=>{
-                console.log('Return:', response)
-                //promise function to upload file, return the url
-                //.then((url)=> do axois request to your server)
-            })
-            .catch(err =>{
-                const {message} = err
-                this.setState({error: message})
-            })
-    }
+  handleFileInput = (e) =>{
+    const firstFile = e.target.files[0]
+    const root = firebase.storage().ref()
+    const newImage = root.child(firstFile.name) 
 
-    render() {
-        const {email, password, error}= this.state; 
-        const displayError = error === '' ? '' : <div className="alert alert-danger" role="alert">{error}</div>
+    newImage.put(firstFile)
+    .then((snapshot)=>{
+      return snapshot.ref.getDownloadURL()
+    })
+    .then((url) =>{
+      this.saveImage(url)
+      this.setState({
+        avatar: url
+      })
+    })
+    .catch((err)=>{
+      console.log(err)
+    })
+  }
 
-        return (
-            <AuthContext.Consumer>
-                {
-                    (user)=>{
-                        if(user){
-                           return <Redirect to="/" />
-                        } else{
-                            return(
-                                <>
-                                {displayError}
-                                    <div style={{ height: '95vh' }}>
-                                        <div style={bgStyle}>
-                                            <div className="login-page">
-                                                <div className="form-wrapper">
-                                                    <form>
-                                                        <div className="form-group">
-                                                            <label htmlFor="exampleInputEmail1">Email address</label>
-                                                            <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="email" value={email} onChange={this.handleChange}></input>
-                                                        </div>
-                                                        <div className="form-group">
-                                                            <label htmlFor="exampleInputPassword1">Password</label>
-                                                            <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" name="password" value={password} onChange={this.handleChange}></input>
-                                                        </div>
-                                                        <button type="submit" className="btn btn-primary" onClick={this.handleSubmit}>Sign Up</button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </>
-                            )
-                        }
-                    }
-                }
+  handleSubmit = (e) => {
+    e.preventDefault();
 
-            </AuthContext.Consumer>
-        )
-    }
+    const { email, password } = this.state
+    firebase.auth().createUserWithEmailAndPassword(email, password)
+      .then(response => {
+        console.log('before setstate', response.user.uid)
+        this.setState({userId: response.user.uid})
+       })
+      .then(()=>{
+        axios.post('http://localhost:3100/user/', {
+          'username': this.state.user,
+          'email': this.state.email,
+          'avatar': this.state.avatar,
+          'useruid': this.state.userId})
+      })
+      .then((res)=>{
+        console.log(res)
+      })
+      .catch(err => {
+        const { message } = err
+        this.setState({ error: message })
+      }) 
+  }
+
+  render() {
+    const { email, password, error } = this.state;
+    const displayError = error === '' ? '' : <div className="alert alert-danger" role="alert">{error}</div>
+
+    return (
+      <AuthContext.Consumer>
+        {
+          (user) => {
+            if (user) {
+              return <Redirect to="/" />
+            } else {
+              return (
+                <>
+                  {displayError}
+                  <div style={{ height: '95vh' }}>
+                    <div style={bgStyle}>
+                      <div className="login-page">
+                        <div className="form-wrapper">
+                          <form>
+                          <div className="form-group">
+                              <label htmlFor="exampleInputEmail1">Username</label>
+                              <input type="text" className="form-control" placeholder="Username" name="user" value={user} onChange={this.handleChange}></input>
+                            </div>
+                            <div className="form-group">
+                              <label htmlFor="exampleInputEmail1">Email address</label>
+                              <input type="email" className="form-control" placeholder="Email" name="email" value={email} onChange={this.handleChange}></input>
+                            </div>
+                            <div className="form-group">
+                              <label htmlFor="exampleInputPassword1">Password</label>
+                              <input type="password" className="form-control"  placeholder="Password" name="password" value={password} onChange={this.handleChange}></input>
+                            </div>
+                            <div className="form-group">
+                              <label htmlFor="exampleInputPassword1">Profile Image</label>
+                              <input type="file" className="form-control" placeholder="My Picture" onChange={this.handleFileInput}></input>
+                            </div>
+                            <button type="submit" className="btn btn-primary" onClick={this.handleSubmit}>Sign Up</button>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </>
+              )
+            }
+          }
+        }
+      </AuthContext.Consumer>
+    )
+  }
 
 }
 
