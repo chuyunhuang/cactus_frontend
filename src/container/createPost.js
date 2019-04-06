@@ -2,14 +2,17 @@ import React from 'react';
 import * as firebase from 'firebase';
 import ImageService from '../service/image';
 import axios from 'axios';
-
+import AuthContext from '../context/auth';
 
 class CreatePost extends React.Component {
+
+  static contextType = AuthContext;
+
   constructor(props) {
     super(props);
 
     this.state = {
-      useruid: props.useruid,
+      useruid: '',
       image: '',
       post_caption: '',
     }
@@ -51,7 +54,7 @@ class CreatePost extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
     axios.post('http://localhost:3100/post/', {
-      'author_id': this.state.useruid,
+      'author_id': this.context.uid,
       'image_url': this.state.image,
       'caption': this.state.post_caption
     })
@@ -63,9 +66,9 @@ class CreatePost extends React.Component {
       })
   }
 
-
   render() {
     return (<>
+  
       <div className="profile-centered-form">
         <div className="profile-form-wrapper">
 

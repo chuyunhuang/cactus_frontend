@@ -14,6 +14,19 @@ import FollowingIcon from './image/following.png';
 
 class Home extends React.Component {
 
+  state={
+    userId: '',
+    token: ''
+  }
+  
+  // getFirebaseIdToken = () => {
+  //   firebase.auth().currentUser.getIdToken(false).then((token) => {
+  //     this.setState({ token })
+  //   }).catch((error) => {
+  //     // Handle error
+  //   });
+  // }
+
   render() {
     return (
       <AuthContext.Consumer>
@@ -24,8 +37,9 @@ class Home extends React.Component {
                 <>
                   <div className="homepage-wrapper">
                     <div className="homepage-msg">Welcome Back!</div>
-                    <div className="user">{user.email}</div>
-                  </div>
+                    <div className="user">{user.email}</div><div className="user">{user.uid}</div>
+                  </div>         
+               
 
                   <div className="userFunction-wrapper">
                     <div className="single">

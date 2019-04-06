@@ -25,16 +25,16 @@ class App extends Component {
   state={
     user: null, 
     userId: null, 
-    userData: null
   }
 
+  
   componentDidMount(){
     this.unsubscribe = firebase.auth().onAuthStateChanged((user=>{
       if (user){
-        this.setState({user})
+        this.setState({user: user,userId: user.uid})
       }
       else{
-        this.setState({user: null})
+        this.setState({user: null, userId: null})
       }
     }))
   }
@@ -42,6 +42,7 @@ class App extends Component {
   componentWillUnmount(){
     this.unsubscribe()
   }
+
 
   render() {
     return (
@@ -60,7 +61,7 @@ class App extends Component {
             <Route path="/newsfeed" exact component={Newsfeed} />
             <Route path="/mypage" exact component={UserPage} />
             <Route path="/profile" exact component={EditUser} />
-            <Route path="/createpost" exact component={CreatePost} />
+            <Route path="/createpost" exact component={CreatePost}/>
           </Switch>
         </AuthContext.Provider>
       </HashRouter>
