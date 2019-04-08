@@ -2,6 +2,7 @@ import React from 'react';
 import './style/newsfeed.css';
 import axios from 'axios';
 
+import SideNav from '../components/sideNav';
 import oneCardElement from '../container/oneCard';
 
 class Newsfeed extends React.Component {
@@ -30,6 +31,7 @@ class Newsfeed extends React.Component {
   render() {
 
     return (<>
+      
       <h1>Here are the latest feeds...</h1>
       <div className="entire-view">
 
@@ -38,6 +40,7 @@ class Newsfeed extends React.Component {
         })}
 
       </div>
+      <SideNav />
     </>
     )
   }

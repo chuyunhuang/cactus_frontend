@@ -33,6 +33,7 @@ class Home extends React.Component {
         {
           (user) => {
             if (user) {
+            
               return (
                 <>
                   <div className="homepage-wrapper">

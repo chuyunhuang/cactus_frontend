@@ -9,8 +9,23 @@ import axios from 'axios';
 class EditUser extends React.Component {
 
   state = {
+    user: '',
+    userId: '',
     username: '',
     avatar: ''
+  }
+
+  componentDidMount(){
+    this.unsubscribe = firebase.auth().onAuthStateChanged((user=>{
+      if (user){
+        this.setState({
+          user: user,
+          userId: user.uid})
+      }
+      else{
+        this.setState({user: null, userId: null})
+      }
+    }))
   }
 
   saveImage = (url) => {
@@ -32,7 +47,7 @@ class EditUser extends React.Component {
         this.setState({
           avatar: url
         })
-        console.log('here', this.state.image)
+        console.log('here', this.state)
       })
       .catch((err) => {
         console.log(err)
@@ -48,10 +63,13 @@ class EditUser extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    axios.put('http://localhost:3100/user/', {
+    console.log('here')
+    axios.put('http://localhost:3100/user/update', {
+      'uid': this.state.userId,
       'username': this.state.username,
-      'avatar': this.state.avatar
+      'imgurl': this.state.avatar
     })
+      .then((response) => console.log(response))
       .catch(err => {
         console.log(err)
       })

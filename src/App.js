@@ -24,16 +24,15 @@ class App extends Component {
 
   state={
     user: null, 
-    userId: null, 
   }
   
   componentDidMount(){
     this.unsubscribe = firebase.auth().onAuthStateChanged((user=>{
       if (user){
-        this.setState({user: user,userId: user.uid})
+        this.setState({user: {uid: user.uid, email: user.email}})
       }
       else{
-        this.setState({user: null, userId: null})
+        this.setState({user: null})
       }
     }))
   }
@@ -44,8 +43,9 @@ class App extends Component {
 
 
   render() {
+    console.log('here', this.state.user)
     
-    return ( this.state.user ?
+    return ( 
       <HashRouter>
         <AuthContext.Provider value={this.state.user}>
           <Route path='/' component={Header} />
@@ -59,14 +59,13 @@ class App extends Component {
             <Route path="/following" exact component={Following} />
             <Route path="/notification" exact component={Notification} />
             <Route path="/newsfeed" exact component={Newsfeed} />
-            <Route path="/mypage" render={(props) => <UserPage {...props} user={this.state.user} />} />
-            {/* <Route path="/mypage" exact component={UserPage} /> */}
+            {/* <Route path="/mypage" render={(props) => <UserPage {...props} user={this.state.user} />} /> */}
+            <Route path="/mypage" exact component={UserPage} />
             <Route path="/profile" exact component={EditUser} />
             <Route path="/createpost" exact component={CreatePost}/>
           </Switch>
         </AuthContext.Provider>
-      </HashRouter> : <>Loading...</>
-
+      </HashRouter> 
     )
   }
 }

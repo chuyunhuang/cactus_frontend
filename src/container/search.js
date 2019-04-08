@@ -6,23 +6,19 @@ import userImg from './image/sunicon.png'
 class Search extends React.Component {
 
     state={
-        query :"user",
-        username:'',
-        post_count: '',
-        followers: '',
-        following: '',
+        query : '',
         error : '' 
     }
 
-    handleInputChange = (e) =>{
+    handleChange = (e) =>{
         console.log('here', e.target.value)
         this.setState({
             query: e.target.value
         })
-       
     }
 
-    handleClick = (e)=>{
+    handleSubmit = (e)=>{
+        
     
     }
 
