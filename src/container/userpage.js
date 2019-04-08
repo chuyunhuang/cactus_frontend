@@ -6,8 +6,8 @@ import './style/newsfeed.css';
 import axios from 'axios';
 
 import SideNav from '../components/sideNav'
-import oneCardElement from '../container/oneCard';
 import AuthContext from '../context/auth';
+import userOneCard from '../container/userOneCard';
 
 class UserPage extends React.Component {
 
@@ -20,7 +20,7 @@ class UserPage extends React.Component {
 			useruid: '',
 			username: '',
 			avatar: '',
-			post: []
+			posts: []
 
 		}
 	}
@@ -30,7 +30,7 @@ class UserPage extends React.Component {
 			console.log('hello', this.context)
 			this.setState({ useruid: this.context.uid }, () => {
 				const { useruid } = this.state
-				console.log('useruid', useruid)
+
 				axios({
 					url: `http://localhost:3100/user/userprofile/${useruid}`,
 					method: 'get'
@@ -40,9 +40,15 @@ class UserPage extends React.Component {
 							username: data.data.data[0].username,
 							avatar: data.data.data[0].avatar
 						})
-						console.log('data!!!!!!', data.data.data[0].username)
-						console.log('data!!!!!!', data.data.data[0].avatar)
 					})
+					axios({
+						url: `http://localhost:3100/post/userpost/${useruid}`,
+						method: 'get'
+					})
+						.then((data)=>{
+							console.log('post data', data.data.data)
+							this.setState({posts: data.data.data})
+						})
 					.catch((err) => {
 						console.log(err)
 					})
@@ -53,6 +59,7 @@ class UserPage extends React.Component {
 
 
 	render() {
+		console.log('my state', this.state)
 		return (
 			<>
 				<div className="user-section">
@@ -71,11 +78,19 @@ class UserPage extends React.Component {
 						<div>
 							<Link to="/createpost" className="link-to-create" style={{ textDecoration: 'none', color: "black" }} >
 								Create Post
-												</Link>
-
+							</Link>
 						</div>
 					</div>
+
 				</div>
+				<h1>My posts...</h1>
+				<div className="entire-view">
+
+        {this.state.posts.map((e, i) => {
+          return userOneCard(e.image_url, e.caption)
+        })}
+
+      </div>
 				<SideNav />
 			</>
 		)

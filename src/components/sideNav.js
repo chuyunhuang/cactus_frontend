@@ -25,8 +25,8 @@ const SideNav = () => {
         </div>
 
         <div className="single">
-          <Link style={{ textDecoration: 'none' }} className="userFunction" to="/notification">
-            Notifications                              
+          <Link style={{ textDecoration: 'none' }} className="userFunction" to="/createpost">
+            Create New Post                              
           </Link>
         </div>
         <div className="single">

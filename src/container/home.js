@@ -63,7 +63,7 @@ class Home extends React.Component {
                     </div>
 
                     <div className="single">
-                      <Link style={{ textDecoration: 'none' }} className="userFunction" to="/notification">Notifications
+                      <Link style={{ textDecoration: 'none' }} className="userFunction" to="/createpost">Create New Post
                                             <div className="single-img"><img src={NotificationIcon} alt="icon" className="img-logo" /></div>
                       </Link>
                     </div>

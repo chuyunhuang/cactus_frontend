@@ -1,19 +1,18 @@
 import React from 'react';
 
 import SingleView from './image_single';
-// import Avatar from './avatar';
+import Avatar from './avatar';
 // import Comment from './comment';
 // import CommentInput from './commentInput';
 import LikeBtn from './likebtn';
 
-const oneCardElement = (image_url, caption) => {
+const oneCardElement = (username, avatar, image_url, caption) => {
   return (
     <div className="single-card-view">
       <div>
-        {/* <div className="header-row">
-          <Avatar user_avatar={avatar} />
-          <div className="username">{username}</div>
-        </div> */}
+         <div className="header-row">
+          <Avatar username = {username} image = {avatar} />
+        </div> 
         <SingleView image ={image_url} text ={caption} />
       </div>
 
@@ -24,7 +23,6 @@ const oneCardElement = (image_url, caption) => {
             <LikeBtn />
           </div>
         </div>
-
         {/* <div className="comment-wrapper">
           <div className="wrapper">
             <Avatar />

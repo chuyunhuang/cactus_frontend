@@ -4,6 +4,9 @@ import ImageService from '../service/image';
 import axios from 'axios';
 import AuthContext from '../context/auth';
 
+import ImageUpload from '../components/image';
+import SideNav from '../components/sideNav';
+
 class CreatePost extends React.Component {
 
   static contextType = AuthContext;
@@ -67,7 +70,7 @@ class CreatePost extends React.Component {
   }
 
   render() {
-    console.log(this.context.uid)
+    
     return (<>
   
       <div className="profile-centered-form">
@@ -101,8 +104,10 @@ class CreatePost extends React.Component {
         </div>
       </div>
       <div>
-        <h1>You've uploaded this image..</h1>
+        <h1>You uploaded image will appear below</h1>
+        <ImageUpload image={this.state.image} />
       </div>
+      {/* <SideNav /> */}
     </>)
   }
 

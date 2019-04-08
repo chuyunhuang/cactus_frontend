@@ -6,6 +6,9 @@ import * as firebase from 'firebase';
 import ImageService from '../service/image';
 import axios from 'axios';
 
+import ImageUpload from '../components/image';
+import SideNav from '../components/sideNav';
+
 class EditUser extends React.Component {
 
   state = {
@@ -111,8 +114,11 @@ class EditUser extends React.Component {
               </div>
             </div>
           </div>
+          
         </div>
-
+        <h1>You uploaded image will appear below</h1>
+        <ImageUpload image={this.state.avatar} />
+      <SideNav />
 
 
       </>

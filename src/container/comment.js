@@ -6,11 +6,16 @@ class Comment extends React.Component{
     super(props)
 
     this.state ={
-        post_id: 1,
-        username: 'Yun',
-        text: 'testing'
+        post_id: '',
+        author_id: '',
+        username: '',
+        text: ''
         } 
     }
+
+    
+
+
   
 
   
