@@ -3,7 +3,7 @@ import './style/newsfeed.css';
 import axios from 'axios';
 
 import SideNav from '../components/sideNav';
-import oneCardElement from '../container/oneCard';
+import OneCardElement from '../container/oneCard';
 
 
 class Newsfeed extends React.Component {
@@ -28,17 +28,16 @@ class Newsfeed extends React.Component {
       })
   }
 
-  getUserUid = () =>{
-    const postArr = this.state.posts
-    const uid = []
-    for(let i = 0 ; i< postArr.length ; i++){
-      uid.push(postArr[i].useruid)
-    }
-    return console.log('DATA!!', uid)
-  }
+  // getUserUid = () =>{
+  //   const postArr = this.state.posts
+  //   const uid = []
+  //   for(let i = 0 ; i< postArr.length ; i++){
+  //     uid.push(postArr[i].useruid)
+  //   }
+  //   return console.log('DATA!!', uid)
+  // }
 
-  
-  
+ 
 
 
   render() {
@@ -49,7 +48,20 @@ class Newsfeed extends React.Component {
       <div className="entire-view">
       
        {this.state.posts.map((e, i) => {
-          return oneCardElement(e.username, e.avatar, e.image_url, e.caption)
+         console.log("HERE!", e.author_id)
+          return(
+          <div className="single-card-view" key={i}> 
+            <OneCardElement 
+            username= {e.username} 
+            avatar = {e.avatar} 
+            image_url = {e.image_url} 
+            caption = {e.caption} 
+            btn_id={i} 
+            author_id={e.author_id}
+            follower_btn_id ={i}
+            following_id ={e.author_id}/>
+        </div>
+      )
         })}
  
     </div>

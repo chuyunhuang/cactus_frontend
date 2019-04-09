@@ -5,10 +5,14 @@ import Avatar from './avatar';
 // import Comment from './comment';
 // import CommentInput from './commentInput';
 import LikeBtn from './likebtn';
+import FollowBtn from './followBtn';
 
-const oneCardElement = (username, avatar, image_url, caption) => {
+const OneCardElement = (props) => {
+
+  let {username, avatar, image_url, caption } = props
   return (
-    <div className="single-card-view">
+    <>
+    
       <div>
          <div className="header-row">
           <Avatar username = {username} image = {avatar} />
@@ -20,7 +24,12 @@ const oneCardElement = (username, avatar, image_url, caption) => {
 
         <div className="content-row">
           <div className="btn-row">
-            <LikeBtn />
+            <LikeBtn 
+            btn_id={props.btn_id} 
+            author_id={props.author_id} />
+            <FollowBtn 
+            follow_btn_id={props.follower_btn_id} 
+            following_id={props.following_id}/>
           </div>
         </div>
         {/* <div className="comment-wrapper">
@@ -36,10 +45,10 @@ const oneCardElement = (username, avatar, image_url, caption) => {
         </div> */}
 
       </div>
-    </div>
-
+  
+</>
   )
 
 }
 
-export default oneCardElement
+export default OneCardElement;
