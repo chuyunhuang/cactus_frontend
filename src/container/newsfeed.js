@@ -18,7 +18,6 @@ class Newsfeed extends React.Component {
   componentDidMount() {
       axios.get('http://localhost:3100/post/')
       .then((data) => {
-        console.log('post data', data)
         this.setState({
           'posts': data.data.data
         })
@@ -48,7 +47,6 @@ class Newsfeed extends React.Component {
       <div className="entire-view">
       
        {this.state.posts.map((e, i) => {
-         console.log("HERE!", e.author_id)
           return(
           <div className="single-card-view" key={i}> 
             <OneCardElement 
@@ -58,8 +56,8 @@ class Newsfeed extends React.Component {
             caption = {e.caption} 
             btn_id={i} 
             author_id={e.author_id}
-            follower_btn_id ={i}
-            following_id ={e.author_id}/>
+            following_id ={e.author_id}
+            comment_id = {i}/>
         </div>
       )
         })}

@@ -3,7 +3,7 @@ import React from 'react';
 import SingleView from './image_single';
 import Avatar from './avatar';
 // import Comment from './comment';
-// import CommentInput from './commentInput';
+import CommentInput from './commentInput';
 import LikeBtn from './likebtn';
 import FollowBtn from './followBtn';
 
@@ -28,8 +28,7 @@ const OneCardElement = (props) => {
             btn_id={props.btn_id} 
             author_id={props.author_id} />
             <FollowBtn 
-            follow_btn_id={props.follower_btn_id} 
-            following_id={props.following_id}/>
+            following_id={props.author_id}/>
           </div>
         </div>
         {/* <div className="comment-wrapper">
@@ -43,7 +42,7 @@ const OneCardElement = (props) => {
         <div className="content-row comment-input-wrapper">
           <CommentInput />
         </div> */}
-
+        <CommentInput comment_id={props.comment_id}  />
       </div>
   
 </>
