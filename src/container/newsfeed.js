@@ -45,7 +45,8 @@ class Newsfeed extends React.Component {
 
     return (<>
       
-      <h1>Here are the latest feeds...</h1>
+      <h3>Here are the latest feeds...</h3>
+      <h6>(Note: Click on user's image will take you to their page!)</h6>
       <div className="entire-view">
       
        {this.state.posts.map((e, i) => {

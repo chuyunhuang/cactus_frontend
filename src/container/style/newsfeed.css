@@ -1,8 +1,12 @@
-h1{
+h3{
     text-align: center;
     color: #F49D37;
     padding-top: 20px;
     font-weight: 600;
+}
+
+h6{
+    text-align: center;
 }
 
 .entire-view{

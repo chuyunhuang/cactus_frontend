@@ -6,7 +6,7 @@ import axios from 'axios';
 
 import SideNav from '../components/sideNav'
 import AuthContext from '../context/auth';
-import userOneCard from '../container/userOneCard';
+import UserOneCard from '../container/userOneCard';
 
 class UserPage extends React.Component {
 
@@ -64,21 +64,21 @@ class UserPage extends React.Component {
 						<img className="user-img" src={this.state.avatar} alt="avatar" />
 					</div>
 					<div className="user-username">
-					 	{this.state.username} 
+						My username: {this.state.username}
 					</div>
 
-					{/* <div className="user-info"> */}
-						{/* <div className="user-username">{this.state.username}</div> */}
-						{/* <div className="post-detail">{this.state.post_count}Posts</div>
-						<div className="post-detail">{this.state.follower_count} Followers</div>
-						<div className="post-detail">{this.state.following_count} Following</div> */}
-					{/* </div> */}
 				</div>
-				<h1>My posts...</h1>
+				<h3>My posts...</h3>
 				<div className="entire-view">
 
         {this.state.posts.map((e, i) => {
-          return userOneCard(e.image_url, e.caption)
+          return (
+						<div className="single-card-view" >
+							< UserOneCard
+							image_url={e.image_url}
+							caption={e.caption} />
+						</div>
+							)
         })}
 
       </div>

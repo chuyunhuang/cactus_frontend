@@ -2,6 +2,7 @@ import React from 'react';
 import './style/follower.css';
 import * as firebase from 'firebase';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 import SideNav from './sideNav';
 import FollowerCard from './followerCard';
@@ -46,31 +47,29 @@ class Following extends React.Component {
     console.log('inside render', this.state)
     return (
       <>
-        <h1>Currently Following...</h1>
+        <h3>Currently Following...</h3>
         <div className="follower-page">
-        
-            {/* {this.state.following.map((e, i)=>{
+          <div className="card-wrapper">
+
+            {this.state.following.map((e, i) => {
+              console.log('mapping', e)
               return (
-                <div className="card-wrapper" key={i}>
-                  <FollowerCard 
-                    example = {e.following_id}
-                  />
+
+                <div className="one-one" key={i}>
+                  <Link to={`profile/${e.username}`}
+                    style={{ textDecoration: 'none', color: 'black' }} >
+                    <FollowerCard
+                      image={e.avatar}
+                      username={e.username}
+                    />
+                  </Link>
                 </div>
               )
             }
-              )} */}
-            {/* <FollowerCard /> */}
-
-            {/* <div className="one">
-                    <img className="avatar-img" src={exampleImg} alt="avatar" />
-                    <div className="follower-username">Example User 001</div>
-                </div>
-                <div className="one">
-                    <img className="avatar-img" src={exampleImg} alt="avatar" />
-                    <div className="follower-username">Example User 002</div>
-                </div> */}
+            )}
           </div>
-        
+        </div>
+
         <SideNav />
       </>
     )
