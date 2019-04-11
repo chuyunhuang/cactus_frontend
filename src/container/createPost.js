@@ -107,7 +107,7 @@ class CreatePost extends React.Component {
         <h1>You uploaded image will appear below</h1>
         <ImageUpload image={this.state.image} />
       </div>
-      {/* <SideNav /> */}
+      <SideNav /> 
     </>)
   }
 

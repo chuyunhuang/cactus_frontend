@@ -36,7 +36,9 @@ class Newsfeed extends React.Component {
   //   return console.log('DATA!!', uid)
   // }
 
- 
+ handleClick = (e) =>{
+   console.log(e)
+ }
 
 
   render() {

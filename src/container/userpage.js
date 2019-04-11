@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import './style/userpage.css';
 import './style/newsfeed.css';
 
@@ -27,7 +26,6 @@ class UserPage extends React.Component {
 
 	componentDidMount() {
 		if (this.context) {
-			console.log('hello', this.context)
 			this.setState({ useruid: this.context.uid }, () => {
 				const { useruid } = this.state
 
@@ -46,7 +44,6 @@ class UserPage extends React.Component {
 						method: 'get'
 					})
 						.then((data)=>{
-							console.log('post data', data.data.data)
 							this.setState({posts: data.data.data})
 						})
 					.catch((err) => {
@@ -59,29 +56,23 @@ class UserPage extends React.Component {
 
 
 	render() {
-		console.log('my state', this.state)
+	
 		return (
 			<>
 				<div className="user-section">
 					<div>
-						<div>Your UID is: {this.state.useruid}</div>
-						<div>Username: {this.state.username}</div>
 						<img className="user-img" src={this.state.avatar} alt="avatar" />
 					</div>
-					<div className="user-info">
+					<div className="user-username">
+					 	{this.state.username} 
+					</div>
+
+					{/* <div className="user-info"> */}
 						{/* <div className="user-username">{this.state.username}</div> */}
 						{/* <div className="post-detail">{this.state.post_count}Posts</div>
 						<div className="post-detail">{this.state.follower_count} Followers</div>
 						<div className="post-detail">{this.state.following_count} Following</div> */}
-					</div>
-					<div className="create-post">
-						<div>
-							<Link to="/createpost" className="link-to-create" style={{ textDecoration: 'none', color: "black" }} >
-								Create Post
-							</Link>
-						</div>
-					</div>
-
+					{/* </div> */}
 				</div>
 				<h1>My posts...</h1>
 				<div className="entire-view">

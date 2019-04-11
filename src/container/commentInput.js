@@ -66,9 +66,21 @@ class CommentInput extends React.Component {
     
     return (
       <>
-        <div className="comment-header">Comment:</div>
-        <div><input className="comment-input-field" type="text" placeholder=" Typing....." id={this.props.comment_id} onChange={this.handleChange}></input></div>
-        <div>< button onClick={this.handleClick}>Submit Comment</button></div>  
+        <div className="comment-header">
+          Comment:
+        </div>
+        <div>
+          <input className="comment-input-field" type="text" placeholder=" Typing....." 
+          id={this.props.comment_id} 
+          onChange={this.handleChange}>
+          </input>
+        </div>
+        <div className="comment-btn-only">
+          < button className="comment-btn" 
+            onClick={this.handleClick}>
+            Submit Comment
+          </button>
+        </div>  
       </>
     )
   }

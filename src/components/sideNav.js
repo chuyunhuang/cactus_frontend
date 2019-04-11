@@ -19,7 +19,7 @@ const SideNav = () => {
 
 
         <div className="single">
-          <Link style={{ textDecoration: 'none' }} className="userFunction" to="/profile">
+          <Link style={{ textDecoration: 'none' }} className="userFunction" to="/editprofile">
             Edit My Profile
           </Link>                              
         </div>
@@ -30,7 +30,7 @@ const SideNav = () => {
           </Link>
         </div>
         <div className="single">
-          <Link style={{ textDecoration: 'none' }} className="userFunction" to="/follower">
+          <Link style={{ textDecoration: 'none' }} className="userFunction" to="/myfollower">
             My Followers                              
           </Link>
         </div>

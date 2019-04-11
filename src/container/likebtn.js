@@ -14,7 +14,7 @@ class LikeBtn extends React.Component {
 
   handleClick = (e) => {
     console.log('before', e.target.id)
-    console.log('before author', e.target.attributes)
+    console.log('before author', e.target.attributes[2].value  )
 
     this.setState({
       post_id: e.target.id,

@@ -1,15 +1,18 @@
 import React from 'react';
+import './style/userpage.css';
+import './style/newsfeed.css';
 
-import SingleView from './image_single';
 
-const userOneCard = (image_url, caption) => {
+const UserOneCard = ({image_url, caption}) => {
+
   return (
-    <div className="single-card-view">
-      <div>
-        <SingleView image={image_url} text={caption} />
-      </div>
-    </div>
+    <>
+      <img className="single-img" src={image_url} alt="example" />
+      <div className="content-content"></div>
+      <div className="body-text content-row">{caption}</div>
+    </>
+    
   )
 }
 
-export default userOneCard;
+export default UserOneCard;

@@ -16,6 +16,7 @@ import Newsfeed from './container/newsfeed';
 import UserPage from './container/userpage';
 import EditUser from './container/editUser';
 import CreatePost from './container/createPost';
+import UserProfile from './container/userProfile';
 
 // ----contexts
 import AuthContext from './context/auth';
@@ -29,7 +30,13 @@ class App extends Component {
   componentDidMount(){
     this.unsubscribe = firebase.auth().onAuthStateChanged((user=>{
       if (user){
-        this.setState({user: {uid: user.uid, email: user.email}})
+        this.setState({
+          user: 
+            {
+          uid: user.uid, 
+          email: user.email
+        }
+      })
       }
       else{
         this.setState({user: null})
@@ -42,26 +49,25 @@ class App extends Component {
   }
 
 
-  render() {
-    console.log('here', this.state.user)
-    
+  render() {    
     return ( 
       <HashRouter>
         <AuthContext.Provider value={this.state.user}>
           <Route path='/' component={Header} />
-          <Switch>
+          <Switch>  
             <Route path="/" exact component={Home} />
             <Route path='/login' exact component={Login} />
             <Route path="/signup" exact component={SignUp} />
             <Route path="/logout" exact component={Logout} />
             <Route path="/search" exact component={Search} />
-            <Route path="/follower" exact component={Follower} />
+            <Route path="/myfollower" exact component={Follower} />
             <Route path="/following" exact component={Following} />
             <Route path="/notification" exact component={Notification} />
             <Route path="/newsfeed" exact component={Newsfeed} />
             {/* <Route path="/mypage" render={(props) => <UserPage {...props} user={this.state.user} />} /> */}
             <Route path="/mypage" exact component={UserPage} />
-            <Route path="/profile" exact component={EditUser} />
+            <Route path="/profile/:username" exact component={UserProfile} /> 
+            <Route path="/editprofile" exact component={EditUser} />
             <Route path="/createpost" exact component={CreatePost}/>
           </Switch>
         </AuthContext.Provider>
