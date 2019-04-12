@@ -1,45 +1,20 @@
 import React from 'react';
 import axios from 'axios';
 
-class Comment extends React.Component{
-  constructor(props){
-    super(props)
-
-    this.state ={
-        post_id: '',
-        author_id: '',
-        username: '',
-        text: ''
-        } 
-    }
-
-    
-
-
+const Comment = (props) =>{
+  return(
+    <>
+      <div className="wrapper">
+        <img src={props.avatar} style={{width: "40px", borderRadius: '50%'}} />
+      </div>
   
-
-  
-  componentDidMount(){
-    const BASED_API = 'http://localhoat:3100/comment'
-    
-    axios.get(`${BASED_API}/${this.state.post_id}`)
-    .then((data)=>{
-      console.log('comment here', data)
-    })
-  }
-
-
-  render(){
-    return(
-      <>
-        <div className="commenter">{this.state.username}</div>
-        <div className="comment-text">{this.state.text}</div>
-      </>
-    )
-  }
-
-}
-
+    <div className="wrapper-2">
+    <div className="commenter">{props.username}</div>
+        <div className="comment-text">{props.comment}</div>
+    </div>
+    </>
+  )
+}   
 
 
 export default Comment;

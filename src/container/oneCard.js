@@ -40,15 +40,8 @@ const OneCardElement = (props) => {
               following_id={props.author_id} />
           </div>
         </div>
+        <Comment />
 
-        <div className="comment-wrapper">
-          {/* <div className="wrapper">
-            <Avatar />
-          </div> */}
-          <div className="wrapper-2">
-            {/* <Comment /> */}
-          </div>
-        </div>
         <div className="content-row comment-input-wrapper">
           <CommentInput
             comment_id={props.comment_id} />

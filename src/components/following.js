@@ -44,7 +44,7 @@ class Following extends React.Component {
   }
 
   render() {
-    console.log('inside render', this.state)
+    // console.log('inside render', this.state)
     return (
       <>
         <h3>Currently Following...</h3>
@@ -52,7 +52,7 @@ class Following extends React.Component {
           <div className="card-wrapper">
 
             {this.state.following.map((e, i) => {
-              console.log('mapping', e)
+              // console.log('mapping', e)
               return (
 
                 <div className="one-one" key={i}>

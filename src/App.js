@@ -50,6 +50,7 @@ class App extends Component {
 
 
   render() {    
+    console.log('app', this.state)
     return ( 
       <HashRouter>
         <AuthContext.Provider value={this.state.user}>

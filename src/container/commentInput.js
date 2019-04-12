@@ -2,6 +2,7 @@ import React from 'react';
 import * as firebase from 'firebase';
 import axios from 'axios';
 
+import Comment from '../container/comment';
 
 class CommentInput extends React.Component {
   constructor(props) {
@@ -11,7 +12,8 @@ class CommentInput extends React.Component {
       post_id: '',
       user: '',
       userId: '',
-      comment: ''
+      comment: '',
+      displaycomment: []
     }
   }
 
@@ -31,7 +33,7 @@ class CommentInput extends React.Component {
   handleChange = (e) =>{
     let realID = Number(e.target.id)
     let toMatchPostgres = realID + 1
-    // console.log(e.target.id)
+    console.log('input', e.target.id)
     this.setState({
       post_id: toMatchPostgres,
       comment: e.target.value
@@ -54,9 +56,17 @@ class CommentInput extends React.Component {
         'comment_text': this.state.comment
       }
     })
-    .then((data)=>{
-      console.log(data)
-    })
+      axios({
+        url:`http://localhost:3100/comment/${this.state.post_id}`,
+        method: 'get'
+      })
+      .then((data)=>{
+        this.setState({
+          displaycomment: data.data.data
+        })
+        console.log('2nd call', data.data.data)
+      })
+    
   }
 
 
@@ -68,6 +78,22 @@ class CommentInput extends React.Component {
       <>
         <div className="comment-header">
           Comment:
+        </div>
+        <div>
+          {
+            this.state.displaycomment.map((e, i)=>{
+              return (
+                <>
+                <div className="comment-wrapper" key={i} style={{borderBottom: "1px solid #efefef", paddingBottom: '5px'}}>
+                  <Comment 
+                  username={e.username}
+                  avatar={e.avatar}
+                  comment={e.comment_text}/>
+                </div>
+                </>
+              )
+            })
+          }
         </div>
         <div>
           <input className="comment-input-field" type="text" placeholder=" Typing....." 

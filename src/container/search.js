@@ -11,6 +11,7 @@ class Search extends React.Component {
         username: '',
         avatar: '',
         postcounts: '',
+        followingcounts: '',
         error : '', 
     }
 
@@ -22,9 +23,8 @@ class Search extends React.Component {
     }
 
     handleClick = () =>{
-        const {query} = this.state 
         axios({
-            url: `http://localhost:3100/user/searchuser/${query}`,
+            url: `http://localhost:3100/user/searchuser/${this.state.query}`,
             method: 'get'
         })
         .then((data)=>{
@@ -33,7 +33,6 @@ class Search extends React.Component {
                 username: data.data.data[0].username,
                 avatar: data.data.data[0].avatar
             })
-            console.log('search', data)
             axios({
                 url: `http://localhost:3100/post/userpost/${this.state.useruid}`,
                 method: 'get'
@@ -42,7 +41,17 @@ class Search extends React.Component {
                 this.setState({
                     postcounts: data.data.data.length
                 })
-                console.log('to get post count', data.data.data.length)
+                axios({
+                    url: `http://localhost:3100/follower/${this.state.useruid}`,
+                    method: 'get'
+                })
+                .then((data)=>{
+                    this.setState({
+                        followingcounts: data.data.following.length
+                    })
+                    console.log('my follower', data.data.following.length)
+                })
+                // console.log('to get post count', data.data.data.length)
             })
         })
 
@@ -51,6 +60,7 @@ class Search extends React.Component {
 
 
     render() {
+        
         return (
             <>
             <div className="search-bar">
@@ -58,17 +68,20 @@ class Search extends React.Component {
                     <div className="search-btn" onClick={this.handleClick}>Search</div>
             </div>
                 <div className='user-wrapper'>
-                    <div className="search-header">Search Results for {this.state.query}</div>
+                    <div className="search-header">Search Result for {this.state.query}</div>
+                    
                     <div className="info-section">
                         <div className="user-info">
-                            <div className='user-img'>
-                                <img className="user-img" src={this.state.avatar} alt="avatar" />
-                            </div>
-                            <div className="username-info">
-                                <h1>Username: {this.state.username}</h1>
-                                <h1>Post Count: {this.state.postcounts}</h1>
+                            <div>
+                                <img className="user-img-search" src={this.state.avatar} alt="avatar" />
                             </div>
                         </div>
+                        <div className="user-text">
+                            <div className="baseline" >Username: {this.state.username}</div>
+                            <div className="baseline">Post Count: {this.state.postcounts}</div>
+                            <div className="baseline">Following Users: {this.state.followingcounts}</div>
+                        </div>
+                        
                     </div>
                 </div>
             </>

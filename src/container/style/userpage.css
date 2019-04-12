@@ -38,3 +38,24 @@
      border-radius: 5px;
 }
 
+.userFunction-wrapper-foruser{
+    display: flex
+}
+
+.single-foruser{
+    width:40%;
+    font-size: 20px;
+    font-weight: bold;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background-color:#F49D37;
+    padding-left: 5px; 
+    border-radius: 10px; 
+    
+}
+
+.img-logo{
+    width:80px;
+    padding:10px;
+} 

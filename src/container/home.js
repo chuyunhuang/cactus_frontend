@@ -28,6 +28,7 @@ class Home extends React.Component {
   // }
 
   render() {
+    console.log('here', this.state)
     return (
       <AuthContext.Consumer>
         {
@@ -50,7 +51,7 @@ class Home extends React.Component {
                     </div>
 
                     <div className="single">
-                      <Link style={{ textDecoration: 'none' }} className="userFunction" to="/profile/:username">View My Page
+                      <Link style={{ textDecoration: 'none' }} className="userFunction" to="/mypage">View My Page
                         <div className="single-img"><img src={MypageIcon} alt="icon" className="img-logo" /></div>
                       </Link>
                     </div>
