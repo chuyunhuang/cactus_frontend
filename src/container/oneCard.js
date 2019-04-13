@@ -8,6 +8,7 @@ import CommentInput from './commentInput';
 import LikeBtn from './likebtn';
 import FollowBtn from './followBtn';
 
+import LikeCount from '../components/likeCount';
 const OneCardElement = (props) => {
 
   let { username, avatar, image_url, caption } = props
@@ -33,15 +34,14 @@ const OneCardElement = (props) => {
       <div className="single-card-content">
         <div className="content-row">
           <div className="btn-row">
-            <LikeBtn
+            {/* <LikeBtn
               btn_id={props.btn_id}
-              author_id={props.author_id} />
+              author_id={props.author_id} /> */}
             <FollowBtn
               following_id={props.author_id} />
           </div>
         </div>
-        <Comment />
-
+        
         <div className="content-row comment-input-wrapper">
           <CommentInput
             comment_id={props.comment_id} />

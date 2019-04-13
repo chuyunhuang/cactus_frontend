@@ -28,7 +28,7 @@ class Home extends React.Component {
   // }
 
   render() {
-    console.log('here', this.state)
+    
     return (
       <AuthContext.Consumer>
         {
