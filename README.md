@@ -1,5 +1,5 @@
-# CACTUS 
- 
+![Image of Logo](https://raw.githubusercontent.com/chuyunhuang/cactus_frontend/master/cactuslogo.png)
+
 A social media platform for users to upload images of their plants -like a plant diary, but for everyone to see! WHY? Because plants are awesome!  
 
 ## Requirement
